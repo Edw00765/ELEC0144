@@ -24,13 +24,13 @@ outputSize = 1
 
 # Hyperparameters
 learningRate = 0.01
-epochs = 20000
+epochs = 3000
 
-# For the weights, we initialize the values as a random value between -0.5 to 0.5 at random.
+# For the weights, we initialize the values as a random value using normal distribution
 # The bias has been initially set at 0
-weights1 = np.random.uniform(-0.5, 0.5, (hiddenSize, inputSize))
+weights1 = np.random.randn(hiddenSize, inputSize) * 0.1
 bias1 = np.zeros((hiddenSize, 1))
-weights2 = np.random.uniform(-0.5, 0.5, (outputSize, hiddenSize))
+weights2 = np.random.randn(outputSize, hiddenSize) * 0.1
 bias2 = np.zeros((outputSize, 1))
 
 

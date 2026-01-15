@@ -31,7 +31,7 @@ def displayPerformance(xInput, yInput, inputTitle, model):
     plt.grid(True)
     plt.show()
 
-# We define our original SGD as a function:
+# We define our original architecture as a function:
 def original(epochs, learningRate):
     keras.backend.clear_session()
 
@@ -44,22 +44,18 @@ def original(epochs, learningRate):
         layers.Dense(1, activation='linear', bias_initializer='zeros')
     ])
 
-    # We compile the model to use SGD where we define the learning rate as 0.01, and calculating the loss using MSE
     model.compile(optimizer=keras.optimizers.SGD(learning_rate=learningRate), loss='mean_squared_error')
 
-    # Here, we train the model using SGD by defining the batch size as 1, and we train it at 5000 epochs.
-    print("Starting training")
+    print("---Starting training, Original Architecture---")
     history = model.fit(xTraining, yTraining, epochs=epochs, batch_size=1, verbose=0) 
 
     # Print final loss
     print(f"Final MSE Loss: {history.history['loss'][-1]:.6f}")
-
     displayPerformance(xTraining, yTraining, "Training Data", model)
     displayPerformance(xTest, yTest, "Test Data", model)
 
 def reluHidden(epochs, learningRate):
     keras.backend.clear_session()
-
     model = keras.Sequential([
         # Hidden layer which contains 3 neurons with the tanh activation function
         layers.Dense(3, input_shape=(1,), activation='relu', bias_initializer='zeros'),
@@ -68,23 +64,19 @@ def reluHidden(epochs, learningRate):
         layers.Dense(1, activation='linear', bias_initializer='zeros')
     ])
 
-    # We compile the model to use SGD where we define the learning rate as 0.01, and calculating the loss using MSE
     model.compile(optimizer=keras.optimizers.SGD(learning_rate=learningRate), loss='mean_squared_error')
 
-    # Here, we train the model using SGD by defining the batch size as 1, and we train it at 5000 epochs.
     print("Starting training")
     history = model.fit(xTraining, yTraining, epochs=epochs, batch_size=1, verbose=0) 
 
     # Print final loss
     print(f"Final MSE Loss: {history.history['loss'][-1]:.6f}")
-
     displayPerformance(xTraining, yTraining, "Training Data", model)
     displayPerformance(xTest, yTest, "Test Data", model)
 
 def leakyReLUOutput(epochs, learningRate):
     keras.backend.clear_session()
 
-    # Unlike our original version, we let keras initialize the starting weights instead of using a uniform distribution
     model = keras.Sequential([
         # Hidden layer which contains 3 neurons with the tanh activation function
         layers.Dense(3, input_shape=(1,), activation="tanh", bias_initializer='zeros'),
@@ -96,21 +88,19 @@ def leakyReLUOutput(epochs, learningRate):
         layers.LeakyReLU(alpha=0.01)
     ])
 
-    # We compile the model to use SGD where we define the learning rate as 0.01, and calculating the loss using MSE
+    
     model.compile(optimizer=keras.optimizers.SGD(learning_rate=learningRate), loss='mean_squared_error')
 
-    # Here, we train the model using SGD by defining the batch size as 1, and we train it at 5000 epochs.
     print("Starting training")
     history = model.fit(xTraining, yTraining, epochs=epochs, batch_size=1, verbose=0) 
 
     # Print final loss
     print(f"Final MSE Loss: {history.history['loss'][-1]:.6f}")
-
     displayPerformance(xTraining, yTraining, "Training Data", model)
     displayPerformance(xTest, yTest, "Test Data", model)
 
-# We define our original SGD as a function:
-def SGD5Hidden(epochs, learningRate):
+# We define our original sgd as a function:
+def sgd5Hidden(epochs, learningRate):
     keras.backend.clear_session()
 
     model = keras.Sequential([
@@ -129,10 +119,8 @@ def SGD5Hidden(epochs, learningRate):
         layers.Dense(1, activation='linear', bias_initializer='zeros')
     ])
 
-    # We compile the model to use SGD where we define the learning rate, and calculating the loss using MSE
     model.compile(optimizer=keras.optimizers.SGD(learning_rate=learningRate), loss='mean_squared_error')
 
-    # Here, we train the model using SGD by defining the batch size as 1, and we train it at 5000 epochs.
     print("Starting training")
     history = model.fit(xTraining, yTraining, epochs=epochs, batch_size=1, verbose=0) 
 
@@ -144,8 +132,8 @@ def SGD5Hidden(epochs, learningRate):
 
 
 
-# We define our original SGD as a function:
-def SGD10Node(epochs, learningRate):
+# We define our original sgd as a function:
+def sgd10Node(epochs, learningRate):
     keras.backend.clear_session()
 
     model = keras.Sequential([
@@ -156,10 +144,9 @@ def SGD10Node(epochs, learningRate):
         layers.Dense(1, activation='linear', bias_initializer='zeros')
     ])
 
-    # We compile the model to use SGD where we define the learning rate as 0.01, and calculating the loss using MSE
+    
     model.compile(optimizer=keras.optimizers.SGD(learning_rate=learningRate), loss='mean_squared_error')
 
-    # Here, we train the model using SGD by defining the batch size as 1, and we train it at 5000 epochs.
     print("Starting training")
     history = model.fit(xTraining, yTraining, epochs=epochs, batch_size=1, verbose=0) 
 
@@ -169,7 +156,7 @@ def SGD10Node(epochs, learningRate):
     displayPerformance(xTraining, yTraining, "Training Data", model)
     displayPerformance(xTest, yTest, "Test Data", model)
 
-def SGD10Node5Hidden(epochs, learningRate):
+def sgd10Node5Hidden(epochs, learningRate):
     keras.backend.clear_session()
 
     model = keras.Sequential([
@@ -190,7 +177,7 @@ def SGD10Node5Hidden(epochs, learningRate):
         layers.Dense(1, activation='linear', bias_initializer='zeros')
     ])
 
-    # We compile the model to use SGD where we define the learning rate, and calculating the loss using MSE
+    # We compile the model to use sgd where we define the learning rate, and calculating the loss using MSE
     model.compile(optimizer=keras.optimizers.SGD(learning_rate=learningRate), loss='mean_squared_error')
 
     # Here, we train the model
@@ -204,11 +191,10 @@ def SGD10Node5Hidden(epochs, learningRate):
     displayPerformance(xTest, yTest, "Test Data", model)
 
 
-epochs = 5000
-learningRate = 0.01
+epochs = 3000
+learningRate = 0.1
 # original(epochs, learningRate)
-# leakyReLUOutput(epochs, learningRate)
+# sgd5Hidden(epochs, learningRate)
+# sgd10Node(epochs, learningRate)
+# sgd10Node5Hidden(epochs, learningRate)
 reluHidden(epochs, learningRate)
-# SGD5Hidden(epochs, learningRate)
-# SGD10Node(epochs, learningRate)
-# SGD10Node5Hidden(epochs, learningRate)

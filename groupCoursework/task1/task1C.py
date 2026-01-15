@@ -199,5 +199,5 @@ def batch(learningRate, epochs):
     displayPerformance(xInput=xTraining, inputTitle="Training Data", weights1=weights1, bias1=bias1, weights2=weights2, bias2=bias2)
     displayPerformance(xInput=xTest, inputTitle="Test Data", weights1=weights1, bias1=bias1, weights2=weights2, bias2=bias2)
 
-adam(learningRate=0.001, epochs=20000)
-# batch(learningRate=0.1, epochs=20000)
+# adam(learningRate=0.01, epochs=3000)
+batch(learningRate=1, epochs=3000)
