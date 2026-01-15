@@ -193,8 +193,8 @@ def sgd10Node5Hidden(epochs, learningRate):
 
 epochs = 3000
 learningRate = 0.1
-# original(epochs, learningRate)
-# sgd5Hidden(epochs, learningRate)
-# sgd10Node(epochs, learningRate)
-# sgd10Node5Hidden(epochs, learningRate)
-reluHidden(epochs, learningRate)
+original(epochs, learningRate)
+sgd5Hidden(epochs, learningRate)
+sgd10Node(epochs, learningRate)
+sgd10Node5Hidden(epochs, learningRate)
+reluHidden(epochs, 0.01)
